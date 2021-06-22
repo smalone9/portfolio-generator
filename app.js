@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 // array
 const profileDataArgs = process.argv.slice(2, process.argv.length);
 console.log(profileDataArgs);
@@ -28,8 +30,13 @@ const generatePage = (name, github) => {
   </html>
   `;
 };
-console.log(name, github);
-console.log(generatePage(name, github));
+
+// fs function
+fs.writeFile('index.html', generatePage(name, github), err => {
+  if (err) throw err;
+
+  console.log('Portfolio complete! Check out index.html to see the output!');
+});
 
 // // create and call function
 // const printProfileData = profileDataArr => {
