@@ -1,25 +1,29 @@
-const fs = require('fs');
+const inquirer = require('inquirer');
+// questions
+inquirer
+  .prompt([
+    {
+      type: 'input',
+      name: 'name',
+      message: 'What is your name?'
+    }
+  ])
+  .then(answers => console.log(answers));
+// console.log(inquirer);
+// const fs = require('fs');
 
-// modularize generatePage function
-const generatePage = require('./src/page-template.js');
+// // modularize generatePage function
+// const generatePage = require('./src/page-template.js');
 
-// array
-const profileDataArgs = process.argv.slice(2);
+// // Inquirer refactor
+// const pageHTML = generatePage(name, github);
 
+// // fs function
+// fs.writeFile('./index.html', pageHTML, err => {
+//   if (err) throw err;
 
-// // use the array index to extract arg
-// const name = profileDataArgs[0];
-// const Github = profileDataArgs[1];
-
-// assignment destructuring
-const [name, github] = profileDataArgs
-
-// fs function
-fs.writeFile('./index.html', generatePage(name, github), err => {
-  if (err) throw new Error(err);
-
-  console.log('Portfolio complete! Check out index.html to see the output!');
-});
+//   console.log('Portfolio complete! Check out index.html to see the output!');
+// });
 
 // // create and call function
 // const printProfileData = profileDataArr => {
