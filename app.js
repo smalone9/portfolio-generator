@@ -1,8 +1,11 @@
 const fs = require('fs');
 
+// modularize generatePage function
+const generatePage = require('./src/page-template.js');
+
 // array
-const profileDataArgs = process.argv.slice(2, process.argv.length);
-console.log(profileDataArgs);
+const profileDataArgs = process.argv.slice(2);
+
 
 // // use the array index to extract arg
 // const name = profileDataArgs[0];
@@ -11,29 +14,9 @@ console.log(profileDataArgs);
 // assignment destructuring
 const [name, github] = profileDataArgs
 
-// html setup
-const generatePage = (name, github) => {
-  return `
-  <!DOCTYPE html>
-  <html lang=en>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content=:"width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Portfolio Demo</title>
-  </head>
-
-  <body>
-    <h1>${name}</h1>
-    <h2><ahref="https://github.com/${github}">Github</a></h2>
-  </body>
-  </html>
-  `;
-};
-
 // fs function
-fs.writeFile('index.html', generatePage(name, github), err => {
-  if (err) throw err;
+fs.writeFile('./index.html', generatePage(name, github), err => {
+  if (err) throw new Error(err);
 
   console.log('Portfolio complete! Check out index.html to see the output!');
 });
