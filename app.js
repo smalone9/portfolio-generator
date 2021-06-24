@@ -20,7 +20,7 @@ const promptUser = () => {
   ]);
 };
 
-const promptProject = () => {
+const promptProject = portfolioData => {
   console.log(`
 =================
 Add a New Project
@@ -61,11 +61,14 @@ Add a New Project
       default: false
     }
   ]);
-};
+  // If there's no 'projects' array property, create one
+if (!portfolioData.projects) {
+  portfolioData.projects = [];
+}};
 promptUser()
 .then(answers => console.log(answers))
 .then(promptProject)
-.then(projectAnswers = console.log(projectAnswers));
+.then(projectAnswers => console.log(projectAnswers));
 // console.log(inquirer);
 // const fs = require('fs');
 
