@@ -1,6 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const generatePage = require('.src/page-template');
+const generatePage = require('./src/page-template');
 // questions in function
 const promptUser = () => {
   return inquirer.prompt([
@@ -124,44 +124,15 @@ if (!portfolioData.projects) {
     }
   });
 };
+
 promptUser()
   .then(promptProject)
   .then(portfolioData => {
-    console.log(portfolioData);
-    // will be uncommented in lesson 4
-    // const pageHTML = generatePage(portfolioData);
-    // fs.writeFile('./index.html', pageHTML, err => {
-    //   if (err) throw new Error(err);
-    //   console.log('Page created! Check out index.html in this directory to see it!');
-    // });
+    const pageHTML = generatePage(portfolioData);
+
+    fs.writeFile('./index.html', pageHTML, err => {
+      if (err) throw new Error(err);
+
+      console.log('Page created! Check out index.html in this directory to see it!');
+    });
   });
-// console.log(inquirer);
-// const fs = require('fs');
-
-// // modularize generatePage function
-// const generatePage = require('./src/page-template.js');
-
-// // Inquirer refactor
-// const pageHTML = generatePage(name, github);
-
-// // fs function
-// fs.writeFile('./index.html', pageHTML, err => {
-//   if (err) throw err;
-
-//   console.log('Portfolio complete! Check out index.html to see the output!');
-// });
-
-// // create and call function
-// const printProfileData = profileDataArr => {
-//     // This...
-//     for (let i = 0; i < profileDataArr.length; i += 1) {
-//         console.log(profileDataArr[i]);
-//     }
-
-//     console.log('================');
-
-//   // Is the same as this...
-//     profileDataArr.forEach(profileItem => console.log(profileItem));
-//   };
-  
-//   printProfileData(profileDataArgs);
