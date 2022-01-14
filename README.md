@@ -1,7 +1,7 @@
 # portfolio-generator
 Module 9 Coding Bootcamp Node.js
 
-![Image of Portfolio Home](screenshot.png)
+![Image of Portfolio-Generator Home](screenshot.png)
 
 
 ## Purpose
